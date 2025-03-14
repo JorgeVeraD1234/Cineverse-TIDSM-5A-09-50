@@ -67,14 +67,14 @@ const App = () => {
               </Col>
               <Col>
                 <p>
-                  ¿No tienes cuenta? <Link to="/register">¡Regístrate!</Link>
+                  ¿No tienes cuenta? <Link to="/Register">¡Regístrate!</Link>
                 </p>
               </Col>
             </Row>
             <Row className="text-center mt-3">
               <p>
                 ¿Olvidaste tu contraseña?{" "}
-                <Link to="/register">¡Regístrate!</Link>
+                <Link to="/Register">¡Regístrate!</Link>
               </p>
             </Row>
           </Form>

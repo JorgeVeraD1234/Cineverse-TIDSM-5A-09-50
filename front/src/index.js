@@ -15,15 +15,15 @@ const routes = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/Inicio",
+    path: "/Home",
     element: <MoviesData />,
   },
   {
-    path: "/register",
+    path: "/Register",
     element: <RegisterForm />,
   },
   {
-    path: "/Reseña",
+    path: "/Review",
     element: <MovieReseña />,
   },
 ]);
