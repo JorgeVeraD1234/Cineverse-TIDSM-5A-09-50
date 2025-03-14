@@ -1,5 +1,6 @@
 import User from "../models/users_model.js"
-
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 
 
@@ -56,9 +57,7 @@ export const deleteUser = async (req, res) => {
   }
 } 
 
-import User from "../models/users_model.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+
 
 // Inicio de sesión
 export const loginUser = async (req, res) => {
