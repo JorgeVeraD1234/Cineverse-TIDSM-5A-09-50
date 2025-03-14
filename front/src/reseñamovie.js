@@ -97,3 +97,5 @@ const MovieReseña = () => {
 };
 
 export default MovieReseña
+
+//hecho por Brian Calvario y corregido por Jorge Vera

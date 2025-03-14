@@ -36,3 +36,5 @@ const routes = createBrowserRouter([
 // Renderiza la aplicación con RouterProvider
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={routes} />);
+
+//hecho por Brian Calvario y corregido por Jorge Vera

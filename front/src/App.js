@@ -24,7 +24,7 @@ const App = () => {
       const user = res.data.user; // Datos del usuario obtenidos desde el backend
       user.logined = true; // Marcar usuario como autenticado
       localStorage.setItem("user", JSON.stringify(user)); // Guardar usuario en LocalStorage
-      navigate("/inicio"); // Redirigir al usuario a la página de inicio
+      navigate("/home"); // Redirigir al usuario a la página de inicio
     } catch (error) {
       alert("Algo salió mal. Por favor, intenta de nuevo.");
       console.error(error);
