@@ -20,7 +20,7 @@ const App = () => {
   const onSubmitData = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/users/sign-in", data); // Llamada al backend
+      const res = await axios.post("http://localhost:3000/api/users/register", data); // Llamada al backend
       const user = res.data.user; // Datos del usuario obtenidos desde el backend
       user.logined = true; // Marcar usuario como autenticado
       localStorage.setItem("user", JSON.stringify(user)); // Guardar usuario en LocalStorage

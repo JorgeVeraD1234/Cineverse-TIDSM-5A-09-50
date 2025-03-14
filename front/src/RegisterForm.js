@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import { Card, Container, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 const RegisterForm = () => {
   const [data, setData] = useState({
     name: "",
-    last_name: "",
-    gmail: "",
-    contrasena: "",
+    email: "",
+    password: "",
   });
 
   const onChangeRegister = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    try {
+      // Envía los datos al backend
+      const response = await axios.post("http://localhost:3000/api/users/register", data);
+      console.log("Usuario creado exitosamente:", response.data); // Imprime la respuesta del backend
+      alert("¡Registro exitoso!"); // Mensaje de éxito al usuario
+    } catch (error) {
+      console.error("Error al crear el usuario:", error.response?.data || error.message);
+      alert("Error al crear el usuario. Por favor, verifica los datos e intenta de nuevo.");
+    }
   };
 
   return (
@@ -26,19 +34,33 @@ const RegisterForm = () => {
           <Form onSubmit={onSubmit}>
             <Form.Group>
               <Form.Label>Nombre</Form.Label>
-              <Form.Control name="name" value={data.name} onChange={onChangeRegister} />
+              <Form.Control
+                name="name"
+                type="text"
+                value={data.name}
+                onChange={onChangeRegister}
+                placeholder="Ingresa tu nombre"
+              />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Apellidos</Form.Label>
-              <Form.Control name="last_name" value={data.last_name} onChange={onChangeRegister} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Gmail</Form.Label>
-              <Form.Control name="gmail" type="email" value={data.gmail} onChange={onChangeRegister} />
+              <Form.Label>Correo Electrónico</Form.Label>
+              <Form.Control
+                name="email"
+                type="email"
+                value={data.email}
+                onChange={onChangeRegister}
+                placeholder="Ingresa tu correo electrónico"
+              />
             </Form.Group>
             <Form.Group>
               <Form.Label>Contraseña</Form.Label>
-              <Form.Control name="contrasena" type="password" value={data.contrasena} onChange={onChangeRegister} />
+              <Form.Control
+                name="password"
+                type="password"
+                value={data.password}
+                onChange={onChangeRegister}
+                placeholder="Ingresa tu contraseña"
+              />
             </Form.Group>
             <Button className="mt-3" type="submit">
               Registrarse
