@@ -2,6 +2,7 @@ import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const App = () => {
   const [data, setData] = useState({}); // Estado para almacenar datos del formulario
@@ -66,14 +67,14 @@ const App = () => {
               </Col>
               <Col>
                 <p>
-                  ¿No tienes cuenta? <a href="/Registro">¡Regístrate!</a>
+                  ¿No tienes cuenta? <Link to="/register">¡Regístrate!</Link>
                 </p>
               </Col>
             </Row>
             <Row className="text-center mt-3">
               <p>
                 ¿Olvidaste tu contraseña?{" "}
-                <a href="/recover-password">Recupérala aquí</a>
+                <Link to="/register">¡Regístrate!</Link>
               </p>
             </Row>
           </Form>
