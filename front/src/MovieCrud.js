@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col, Card, Form, Button, Table } from "react-bootstrap";
-
+import MyNavbar from "./Navbar";
 const MoviesCrud = () => {
   const [movies, setMovies] = useState([]);
   const [movie, setMovie] = useState(null);
@@ -83,6 +83,7 @@ const MoviesCrud = () => {
 
   return (
     <Container>
+          <MyNavbar />
       <h1 className="my-4 text-center">Gestión de Películas</h1>
 
       {/* Crear una nueva película */}

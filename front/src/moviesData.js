@@ -1,4 +1,5 @@
 import React from "react";
+import MyNavbar from "./Navbar";
 
 const moviesData = [
   {
@@ -45,7 +46,9 @@ const moviesData = [
 
 const MoviesList = () => {
   return (
+
     <div style={{ padding: "20px" }}>
+      <MyNavbar />
       {moviesData.map((category, index) => (
         <div key={index} style={{ marginBottom: "30px" }}>
           <h2>{category.title}</h2>
