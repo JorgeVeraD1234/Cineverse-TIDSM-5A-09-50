@@ -1,7 +1,18 @@
 import React from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const MyNavbar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Eliminar el token del almacenamiento local o de sesión
+    localStorage.removeItem("token");
+
+    // Redirigir al usuario a la pantalla de inicio de sesión
+    navigate("/");
+  };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -17,6 +28,12 @@ const MyNavbar = () => {
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.3">Otra acción</NavDropdown.Item>
             </NavDropdown>
+          </Nav>
+          {/* Botón de Logout */}
+          <Nav>
+            <Nav.Link onClick={handleLogout} style={{ color: "#f44336", cursor: "pointer" }}>
+              Logout
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
