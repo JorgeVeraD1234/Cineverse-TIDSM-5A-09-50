@@ -1,75 +1,96 @@
-import React, { useState } from "react";
-import { Card, Container, Form, Button } from "react-bootstrap";
-import axios from "axios";
+import React, { useState } from 'react';
 
 const RegisterForm = () => {
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    password: "",
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
   });
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
-  const onChangeRegister = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      // Envía los datos al backend
-      const response = await axios.post("http://localhost:3000/api/users/register", data);
-      console.log("Usuario creado exitosamente:", response.data); // Imprime la respuesta del backend
-      alert("¡Registro exitoso!"); // Mensaje de éxito al usuario
+      const response = await fetch('http://localhost:5000/api/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Error en el registro');
+      }
+
+      setSuccess(true);
+      setError(null);
+      setFormData({ name: '', email: '', password: '' });
     } catch (error) {
-      console.error("Error al crear el usuario:", error.response?.data || error.message);
-      alert("Error al crear el usuario. Por favor, verifica los datos e intenta de nuevo.");
+      setSuccess(false);
+      setError(error.message);
     }
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
-      <Card style={{ width: "500px" }} className="shadow-lg">
-        <Card.Body className="p-4">
-          <Card.Title>Formulario de Registro de Usuario</Card.Title>
-          <Form onSubmit={onSubmit}>
-            <Form.Group>
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control
-                name="name"
-                type="text"
-                value={data.name}
-                onChange={onChangeRegister}
-                placeholder="Ingresa tu nombre"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Correo Electrónico</Form.Label>
-              <Form.Control
-                name="email"
-                type="email"
-                value={data.email}
-                onChange={onChangeRegister}
-                placeholder="Ingresa tu correo electrónico"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Contraseña</Form.Label>
-              <Form.Control
-                name="password"
-                type="password"
-                value={data.password}
-                onChange={onChangeRegister}
-                placeholder="Ingresa tu contraseña"
-              />
-            </Form.Group>
-            <Button className="mt-3" type="submit">
-              Registrarse
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-    </Container>
+    <div>
+      <h2>Formulario de Registro</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="name">Nombre:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Correo Electrónico:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Contraseña:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit">Registrarse</button>
+      </form>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>¡Usuario creado con éxito!</p>}
+    </div>
   );
 };
 
 export default RegisterForm;
+
+
+const update = lolo
