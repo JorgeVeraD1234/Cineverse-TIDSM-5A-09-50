@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import FilterMovie from "./MovieM";
 import RegisterForm from "./RegisterForm";
 import MoviesData from "./moviesData";
 import MovieReseña from "./reseñamovie";
-import "bootstrap/dist/css/bootstrap.min.css";
+import MoviesCrud from "./MovieCrud";
 
 // Configura las rutas
 const routes = createBrowserRouter([
@@ -26,6 +27,10 @@ const routes = createBrowserRouter([
     path: "/Review",
     element: <MovieReseña />,
   },
+  {
+    path: "/Movies",
+    element: <MoviesCrud />,
+  }
 ]);
 
 // Renderiza la aplicación con RouterProvider
